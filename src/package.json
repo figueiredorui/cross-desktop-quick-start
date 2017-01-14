@@ -1,0 +1,38 @@
+{
+  "name": "cross-desktop-quick-start",
+  "version": "0.0.1",
+  "main": "main.js",
+  "description": "Quick-start application using Electron and AngularJS",
+  "author": "Rui Figueiredo",
+  "repository": "https://github.com/figueiredorui/cross-desktop-quick-start",
+  "license": "MIT",
+  "keywords": [
+    ""
+  ],
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-builder": "^11.2.4"
+  },
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron app/.",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "cross-desktop-quick-start",
+    "mac": {
+      "category": "cross-desktop-quick-start"
+    },
+    "extraResources": {
+      "from": "Api",
+      "to": "Api",
+      "filter": [
+        "**/*"
+      ]
+    },
+    "win": {
+      "iconUrl": "(windows-only) https link to icon"
+    }
+  }
+}

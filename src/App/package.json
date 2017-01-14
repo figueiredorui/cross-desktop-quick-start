@@ -1,0 +1,16 @@
+{
+  "name": "cross-desktop-quick-start",
+  "version": "0.0.1",
+  "main": "main.js",
+  "description": "Quick-start application using Electron and AngularJS",
+  "author": "Rui Figueiredo",
+  "repository": "https://github.com/figueiredorui/cross-desktop-quick-start",
+  "license": "MIT",
+  "keywords": [
+    ""
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-ui-router": "^0.3.2"
+  }
+}

@@ -1,0 +1,11 @@
+<div ng-controller="ContactsCtrl as ctrl">
+  <h3>Contacts</h3>
+  <ul>
+    <li ng-repeat="contact in ctrl.Contacts">
+      [{{contact.ContactId}}] {{contact.FirstName}} {{contact.LastName}}
+    </li>
+    <li ng-if="results.length === 0">
+      <strong>No results found...</strong>
+    </li>
+  </ul>
+</div>
