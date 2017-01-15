@@ -21,17 +21,20 @@
   },
   "build": {
     "appId": "cross-desktop-quick-start",
-    "mac": {
-      "category": "cross-desktop-quick-start"
+    "directories":{
+      "buildResources":"assets"
     },
     "extraResources": {
-      "from": "Api",
-      "to": "Api",
+      "from": "Api/bin/Debug/netcoreapp1.1/",
+      "to": "Api/bin/Debug/netcoreapp1.1/",
       "filter": [
         "**/*"
       ]
     },
-    "win": {
+    "mac": {
+      "category": "cross-desktop-quick-start"
+    },
+    "win": {     
       "iconUrl": "(windows-only) https link to icon"
     }
   }
