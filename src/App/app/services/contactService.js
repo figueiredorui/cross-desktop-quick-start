@@ -10,4 +10,18 @@ app.service('ContactService', function ($http, AppSettings) {
                 return response.data;
             });
     }
+
+    svc.Add = function (contact) {
+        return $http.post(urlBase, contact)
+            .then(function success(response) {
+                return response.data;
+            });
+    }
+
+    svc.Delete = function (contact) {
+        return $http.delete(urlBase, contact)
+            .then(function success(response) {
+                return response.data;
+            });
+    }
 });
