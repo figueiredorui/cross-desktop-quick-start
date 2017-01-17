@@ -15,7 +15,7 @@ namespace Api.Controllers
         public ContactsController(){
             contactRepository = new ContactRepository();
         }
-        // GET api/values
+        // GET api/contacts
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
@@ -23,29 +23,33 @@ namespace Api.Controllers
             return result;
         }
 
-        // GET api/values/5
+        // GET api/contacts/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Contact Get(int id)
         {
-            return "value";
+            var result = contactRepository.Get(id);
+            return result;
         }
 
-        // POST api/values
+        // POST api/contacts
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Contact contact)
         {
+            contactRepository.Insert(contact);
         }
 
-        // PUT api/values/5
+        // PUT api/contacts/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Contact contact)
         {
+            contactRepository.Update(contact);
         }
 
-        // DELETE api/values/5
+        // DELETE api/contacts/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            contactRepository.Delete(id);
         }
     }
 }

@@ -18,5 +18,27 @@ namespace Api.Data.Repositories
         public List<Contact> Get(){
             return ctx.Contacts.ToList();
         }
+
+        public Contact Get(int contactId){
+            return ctx.Contacts.Find(contactId);
+        }
+
+         public Contact Insert(Contact contact){
+            ctx.Contacts.Add(contact);
+            ctx.SaveChanges();
+            return contact;
+        }
+
+        public Contact Update(Contact contact){
+            ctx.Contacts.Update(contact);
+            ctx.SaveChanges();
+            return contact;
+        }
+
+        public void Delete(int contactId){
+            var contact = ctx.Contacts.Find(contactId);
+            ctx.Contacts.Remove(contact);
+            ctx.SaveChanges();
+        }
     }
 }

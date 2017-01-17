@@ -1,46 +1,47 @@
 <div ng-controller="ContactsCtrl as ctrl">
   <h3>Contacts</h3>
 
+  <div class="alert alert-danger" ng-show="ctrl.ErrorMessage" role="alert">{{ctrl.ErrorMessage}}</div
+
   <form novalidate="novalidate" class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label" for="inputFirstName">First name:</label>
+    <div class="row form-group well well-sm">
+      <label class="col-sm-2 control-label" for="inputFirstName">First name:</label>
 
-      <div class="controls">
-        <input type="text" id="inputFirstName" ng-model="ctrl.Contact.FirstName" placeholder="First name"/>
+      <div class="col-sm-3">
+        <input type="text" class="form-control input-sm" id="inputFirstName" ng-model="ctrl.Contact.FirstName" placeholder="First name" />
       </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="inputLastName">Last name:</label>
+    
+    <label class="col-sm-2 control-label" for="inputLastName">Last name:</label>
 
-      <div class="controls">
-        <input type="text" id="inputLastName" ng-model="ctrl.Contact.LastName" placeholder="Last name"/>
-      </div>
+    <div class="col-sm-3">
+      <input type="text" class="form-control input-sm" id="inputLastName" ng-model="ctrl.Contact.LastName" placeholder="Last name" />
     </div>
-    <div class="control-group">
-      <div class="controls">
-        <a ng-click="ctrl.AddContact()" class="btn btn-small btn-primary">create new contact</a>
-      </div>
-    </div>
-  </form>
 
-  <div class="span6">
-    <table class="table table-striped table-condensed">
-      <thead>
-        <tr>
-          <th style="min-width: 80px;">First name</th>
-          <th style="min-width: 80px;">Last name</th>
-          <th style="width:20px;">&nbsp;</th>
-          <th style="width:20px;">&nbsp;</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="contact in ctrl.Contacts">
-              <td>{{ contact.firstName }}</td>
-              <td>{{ contact.lastName }}</td>
-              <td><a ng-click="ctrl.DeleteContact(contact.id)" class="btn btn-small btn-danger">delete</a></td>
-            </tr>
-          </tbody>
-          </table>
+
+  <div class="col-sm-2">
+    <a ng-click="ctrl.AddContact()" style="padding: 5px" class="btn btn-xs btn-primary"> Add Contact </a>
+  </div>
+</div>
+</form>
+
+<div class="span6">
+  <table class="table table-striped table-condensed">
+    <thead>
+      <tr>
+        <th style="min-width: 80px;">First name</th>
+<th style="min-width: 80px;">Last name</th>
+<th style="width:20px;">&nbsp;</th>
+<th style="width:20px;">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+  <tr ng-repeat="contact in ctrl.Contacts">
+    <td>{{ contact.FirstName }}</td>
+    <td>{{ contact.LastName }}</td>
+    <td><a ng-click="ctrl.DeleteContact(contact.ContactId)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 </div>

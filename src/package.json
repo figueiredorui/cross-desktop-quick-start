@@ -16,10 +16,11 @@
   },
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "electron app/.",
+    "publish:api":"dotnet publish -r win10-x64 api/",
+    "start": "electron app/.",    
     "pack": "build --dir",
     "dist": "build"
-  },
+   },
   "build": {
     "appId": "cross-desktop-quick-start",
     "directories": {

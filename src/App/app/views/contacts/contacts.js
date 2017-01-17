@@ -6,6 +6,11 @@ app.controller('ContactsCtrl', function (ContactService) {
         ctrl.Contacts = [];
         ctrl.Contact = null;
 
+        ctrl.ErrorMessage = null;
+
+        ctrl.AddContact = AddContact
+        ctrl.DeleteContact = DeleteContact
+
         Init();
 
         function Init(){
@@ -16,20 +21,27 @@ app.controller('ContactsCtrl', function (ContactService) {
         ContactService.Get()
                 .then(function (contacts) {
                         ctrl.Contacts = contacts
+                }, function (error) {
+                        ctrl.ErrorMessage = error;
                 });
         }
 
         function AddContact(){
                 ContactService.Add(ctrl.Contact)
                 .then(function (contact) {
-                        
+                        LoadContacts();
+                        ctrl.Contact = null;
+                }, function (error) {
+                        ctrl.ErrorMessage = error;
                 });
         }
 
-        function DeleteContact(contactID){
-                ContactService.Delete(contactID)
+        function DeleteContact(ContactId){
+                ContactService.Delete(ContactId)
                 .then(function (contact) {
-                        
+                        LoadContacts()
+                }, function (error) {
+                        ctrl.ErrorMessage = error;
                 });
         }
 

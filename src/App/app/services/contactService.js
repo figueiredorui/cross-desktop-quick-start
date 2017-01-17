@@ -18,8 +18,8 @@ app.service('ContactService', function ($http, AppSettings) {
             });
     }
 
-    svc.Delete = function (contact) {
-        return $http.delete(urlBase, contact)
+    svc.Delete = function (contactId) {
+        return $http.delete(urlBase + '/' + contactId)
             .then(function success(response) {
                 return response.data;
             });
