@@ -3,7 +3,7 @@
 
 1. Publish api
 
-    [How to publish](api/README.md)
+    [How to publish](https://github.com/figueiredorui/cross-desktop-quick-start/blob/master/src/Api/README.md)
 
 2. Start aplication
 
