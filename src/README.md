@@ -1,11 +1,15 @@
 
-## To Use
+## How to Use
+
+1. Publish api
+
+    [How to publish](api/README.md)
+
+2. Start aplication
 
 ```
 # Install dependencies
 npm install
-# Publish api
-npm run publish:api
 # Run the app
 npm start
 ```

@@ -1,9 +1,6 @@
 # cross-desktop-quick-start
 
-Quick-start application using Electron and AngularJS. 
-
-Also include a Web Api using .NET Core
-
+Quick-start cross-plataform application using Electron + AngularJS to create the UI and .NET Core + EF Core store data on a SqLite database
 
 ## Credits
 
