@@ -12,20 +12,21 @@
   "devDependencies": {
     "electron": "^1.4.1",
     "electron-builder": "^11.2.4",
-    "electron-builder-squirrel-windows": "^11.4.0"
+    "electron-builder-squirrel-windows": "^11.4.0",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "scripts": {
     "postinstall": "install-app-deps",
-    "publish:api":"dotnet publish -r win10-x64 api/",
-    "start": "electron app/.",    
+    "publish:api": "dotnet publish -r win10-x64 api/",
+    "start": "electron app/.",
     "pack": "build --dir",
     "dist": "build"
-   },
+  },
   "build": {
     "appId": "cross-desktop-quick-start",
     "directories": {
       "buildResources": "../assets",
-      "output":"../dist"
+      "output": "../dist"
     },
     "extraResources": {
       "from": "Api/bin/Debug/netcoreapp1.1/",
@@ -38,10 +39,11 @@
       "category": "cross-desktop-quick-start"
     },
     "win": {
-      "target":"squirrel",
+      "target": "squirrel",
       "iconUrl": "https://github.com/figueiredorui/cross-desktop-quick-start/blob/master/assets/icon.ico"
     },
-    "squirrelWindows":{
+    "squirrelWindows": {
+      "iconUrl": "https://github.com/figueiredorui/cross-desktop-quick-start/blob/master/assets/icon.ico",
       "remoteReleases": true
     }
   }
