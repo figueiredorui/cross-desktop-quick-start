@@ -24,7 +24,8 @@
   "build": {
     "appId": "cross-desktop-quick-start",
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "../assets",
+      "output":"../dist"
     },
     "extraResources": {
       "from": "Api/bin/Debug/netcoreapp1.1/",
@@ -38,7 +39,7 @@
     },
     "win": {
       "target":"squirrel",
-      "iconUrl": "https://github.com/figueiredorui/cross-desktop-quick-start/blob/master/src/build/icon.ico"
+      "iconUrl": "https://github.com/figueiredorui/cross-desktop-quick-start/blob/master/assets/icon.ico"
     },
     "squirrelWindows":{
       "remoteReleases": true
