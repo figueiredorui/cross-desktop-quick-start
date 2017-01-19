@@ -1,1 +1,3 @@
-win-unpacked
+win-unpacked/
+cross-desktop-quick-start.app/
+.DS_Store
