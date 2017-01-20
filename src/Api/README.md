@@ -13,6 +13,6 @@ dotnet run
 
 ```
 dotnet publish -r win10-x64
-dotnet publish -r osx.10.11-x64
+dotnet publish -r osx.10.12-x64
 dotnet publish -r ubuntu.14.04-x64
 ```
