@@ -3,6 +3,7 @@ if (require('electron-squirrel-startup')) return;
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
+const Menu = electron.Menu
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 const autoUpdater = electron.autoUpdater
@@ -77,7 +78,7 @@ function startApi() {
 }
 
 function initAutoUpdaterEvents() {
-  var updateFeed = 'http://localhost:3000/updates/latest';    
+  var updateFeed = 'http://localhost:3000/updates/latest';
 
   // Don't use auto-updater if we are in development 
   if (!isDevelopment) {
@@ -89,13 +90,13 @@ function initAutoUpdaterEvents() {
     }
 
     autoUpdater.addListener("update-available", function (event) {
-     writeLog("A new update is available");
+      writeLog("A new update is available");
       if (mainWindow) {
         mainWindow.webContents.send('update-message', 'update-available');
       }
     });
     autoUpdater.addListener("update-downloaded", function (event, releaseNotes, releaseName, releaseDate, updateURL) {
-     writeLog("A new update is ready to install", `Version ${releaseName} is downloaded and will be automatically installed on Quit`);
+      writeLog("A new update is ready to install", `Version ${releaseName} is downloaded and will be automatically installed on Quit`);
       if (mainWindow) {
         mainWindow.webContents.send('update-message', 'update-downloaded');
       }
@@ -107,13 +108,13 @@ function initAutoUpdaterEvents() {
       }
     });
     autoUpdater.addListener("checking-for-update", function (event) {
-     writeLog("Checking for update");
+      writeLog("Checking for update");
       if (mainWindow) {
         mainWindow.webContents.send('update-message', 'checking-for-update');
       }
     });
     autoUpdater.addListener("update-not-available", function () {
-     writeLog("Update not available");
+      writeLog("Update not available");
       if (mainWindow) {
         mainWindow.webContents.send('update-message', 'update-not-available');
       }
@@ -126,23 +127,52 @@ function initAutoUpdaterEvents() {
   }
 }
 
-function checkForUpdates(){
+function checkForUpdates() {
   if (!isDevelopment) {
-        mainWindow.webContents.on('did-frame-finish-load', function() {
-            writeLog("Checking for updates: " + feedURL);
-            autoUpdater.checkForUpdates();
-        });
-    }
+    mainWindow.webContents.on('did-frame-finish-load', function () {
+      writeLog("Checking for updates: " + feedURL);
+      autoUpdater.checkForUpdates();
+    });
+  }
 }
 
-function writeLog(msg){
+function writeLog(msg) {
   console.log(msg);
 }
 
+function CreateMenus() {
+  var devMenuTemplate = [{
+    label: 'Tools',
+    submenu: [{
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      click: function () {
+        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
+      }
+    }, {
+      label: 'Toggle DevTools',
+      accelerator: 'Alt+CmdOrCtrl+I',
+      click: function () {
+        BrowserWindow.getFocusedWindow().toggleDevTools();
+      }
+    }, {
+      label: 'Quit',
+      accelerator: 'CmdOrCtrl+Q',
+      click: function () {
+        app.quit();
+      }
+    }]
+  }]
+
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(devMenuTemplate));
+
+}
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', function () {
+  CreateMenus();
   startApi();
 })
 
@@ -161,13 +191,15 @@ app.on('window-all-closed', function () {
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit()
+    if (apiProcess != null)
     apiProcess.kill();
   }
 })
 
 process.on('exit', function () {
   writeLog('exit');
-  apiProcess.kill();
+  if (apiProcess != null)
+    apiProcess.kill();
 });
 
 // In this file you can include the rest of your app's specific main process
