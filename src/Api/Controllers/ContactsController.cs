@@ -24,7 +24,7 @@ namespace Api.Controllers
         }
 
         // GET api/contacts/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="Get")]
         public Contact Get(int id)
         {
             var result = contactRepository.Get(id);
@@ -33,9 +33,17 @@ namespace Api.Controllers
 
         // POST api/contacts
         [HttpPost]
-        public void Post([FromBody]Contact contact)
+        public IActionResult Post([FromBody]Contact contact)
         {
-            contactRepository.Insert(contact);
+            try{
+                contactRepository.Insert(contact);
+                return CreatedAtRoute("Get", new { id = contact.ContactId }, contact);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
 
         // PUT api/contacts/5

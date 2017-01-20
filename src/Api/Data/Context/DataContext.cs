@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Api.Data.Models;
+
 
 namespace Api.Data.Context
 {
@@ -15,12 +17,37 @@ namespace Api.Data.Context
             this.EnsureSeedData();
         }
 
+        public override int SaveChanges()
+        {
+            try
+            {                
+                return base.SaveChanges();
+            }            
+            catch (Exception ex)
+            {
+                var msg = GetFullMessage(ex);
+                throw new Exception(msg);
+            }
+        }
+
+        private string GetFullMessage(Exception ex)
+        {
+            return ex.InnerException == null 
+                 ? ex.Message 
+                : ex.Message + " --> " + GetFullMessage(ex.InnerException);
+        }
+
         public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=.\;Database=MyDatabase;Trusted_Connection=True;");
-            optionsBuilder.UseSqlite("Filename=./Data.db");
+            bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            bool isOSX = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+            if (isOSX)
+                optionsBuilder.UseSqlite("Filename=/Users/user/Documents/Data.db");
+            else
+                optionsBuilder.UseSqlite("Filename=./Data.db");
         }
     }
 
