@@ -55,7 +55,7 @@ function startApi() {
   //  run server
   var apipath = path.join(__dirname, '..\\Api\\bin\\Debug\\netcoreapp1.1\\win10-x64\\publish\\Api.exe')
   if (os.platform() === 'darwin') {
-    apipath = path.join(__dirname, '..//Api//bin//Debug//netcoreapp1.1//osx.10.11-x64//publish//Api')
+    apipath = path.join(__dirname, '..//Api//bin//Debug//netcoreapp1.1//osx.10.12-x64//publish//Api')
   }
   apiProcess = proc(apipath)
 
