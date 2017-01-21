@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Api.Data.Models;
-
+using System.IO;
 
 namespace Api.Data.Context
 {
@@ -44,10 +44,16 @@ namespace Api.Data.Context
             //optionsBuilder.UseSqlServer(@"Server=.\;Database=MyDatabase;Trusted_Connection=True;");
             bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
             bool isOSX = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
-            if (isOSX)
-                optionsBuilder.UseSqlite("Filename=/Users/user/Documents/Data.db");
-            else
-                optionsBuilder.UseSqlite("Filename=./Data.db");
+                  
+            if (isOSX){
+                string path = Environment.GetEnvironmentVariable("HOME");
+                optionsBuilder.UseSqlite("Filename=" + path + "/Data.db");
+            }
+            else{
+                string path = Environment.GetEnvironmentVariable("HOMEPATH");
+                optionsBuilder.UseSqlite("Filename=" + path + "/Data.db");
+            }
+                
         }
     }
 
