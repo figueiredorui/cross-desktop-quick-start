@@ -1,6 +1,6 @@
 {
   "name": "cross-desktop-quick-start",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "main.js",
   "description": "Quick-start application using Electron and AngularJS",
   "author": "Rui Figueiredo",
